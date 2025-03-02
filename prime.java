@@ -1,7 +1,7 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class primeBruteForce{
-public static void main(String[] args){
+public class prime {
+    public static void main(String[] args){
     // System.out.println("Hello Worlds");
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter the Number of Test Cases: ");
@@ -11,12 +11,13 @@ public static void main(String[] args){
         System.out.println("Enter the Number: ");
         int n = sc.nextInt();
         int count = 0;
-        for(int div=1; div<=n; div++){
+        for(int div=2; div*div<=n; div++){
             if(n%div == 0){
                 count++;
+                break;
             }
         }
-        if(count==2){
+        if(count==0){
             System.out.println("Prime");
         }
         else{
@@ -27,7 +28,3 @@ public static void main(String[] args){
     sc.close();
 }
 }
-// The above program takes more than 1 second to execute.
-// suppose, t = 10^4, n = 10^9
-// cpu can do 3 cycles of 10^9 in 1 second.
-// But this program takes, 10^4 * 10^9 = 10^13
