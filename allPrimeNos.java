@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class allPrimeNos {
     public static void main(String[] args){
-    // System.out.println("Hello Worlds");
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter the Number of Test Cases: ");
     int t = sc.nextInt();
