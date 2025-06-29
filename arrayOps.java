@@ -50,6 +50,32 @@ public class arrayOps {
         return kthArray;
    }
 
+   static int targetTwoSum(int []arr, int target){
+        int count = 0;
+        for(int i=0; i<arr.length; i++){
+            for(int j=i+1; j<arr.length; j++){
+                if(arr[i] + arr[j] == target){
+                    count++;
+                }
+            }
+        }
+        return count;
+   }
+
+   static int targetThreeSum(int []arr, int target){
+        int count = 0;
+        for(int i=0; i<arr.length; i++){
+            for(int j=i+1; j<arr.length; j++){
+                for(int k=j+1; k<arr.length; k++){
+                if(arr[i] + arr[j] + arr[k] == target){
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
+    }
+
    static void printArray(int []arr){
         System.out.print("[ ");
         for(int i=0; i<arr.length; i++){
@@ -72,58 +98,75 @@ public class arrayOps {
             arr[i] = sc.nextInt();
         }
         int x = 0;
+        int target = 0;
         
         do{
-        System.out.println("What do you want to do with the array??");
-        System.out.println("Options: ");
-        System.out.println("1. Find the first occurence of X in an array");
-        System.out.println("2. Find the count of elements strictly greater than X");
-        System.out.println("3. Check whether the given array is sorted or not");
-        System.out.println("4. Find the Kth Smallest and Kth Largest Element in an array");
+            System.out.println("");
+            System.out.println("What do you want to do with the array??");
+            System.out.println("Options: ");
+            System.out.println("1. Find the first occurence of X in an array");
+            System.out.println("2. Find the count of elements strictly greater than X");
+            System.out.println("3. Check whether the given array is sorted or not");
+            System.out.println("4. Find the Kth Smallest and Kth Largest Element in an array");
+            System.out.println("5. Find the target two sum count of array");
+            System.out.println("6. Find the target three sum count of array");
 
-        System.out.println("Enter the Option");
-        int option = sc.nextInt();
 
-        switch(option){
-            case 1:
-                System.out.println("Enter the Element X: ");
-                x = sc.nextInt();
-                int first = firstOccurenceArray(arr, x);
-                if (first != -1){
-                    System.out.println("First Occurence of "+ x + " is " + "at " + "index no " + first);
-                }
-                else{
-                    System.out.println("Element Not Found");
-                }
-                break;
-            case 2:
-                System.out.println("Enter the Element X: ");
-                x = sc.nextInt();
-                int count = findStrictlyGreater(arr, x);
-                System.out.println("Count of elements strictly greater than " + x + " is "+ count);
-                break;
-            case 3:
-                boolean isSorted = isSorted(arr);
-                if(isSorted){
-                    System.out.println("The Given Array is sorted");
-                }
-                else{
-                    System.out.println("The Given Array is not sorted");
-                }
-                break;
-            case 4:
-                System.out.println("Enter K: ");
-                int k = sc.nextInt();
-                int []kthArray = kthSmallestInArray(arr, k);
-                System.out.println("");
-                System.out.println("Output Array is: ");
-                printArray(kthArray);
-                break;
+            System.out.println("Enter the Option");
+            int option = sc.nextInt();
 
-            default:
-                System.out.println("Invalid option.");
-                break;
-            }
+            switch(option){
+                case 1:
+                    System.out.println("Enter the Element X: ");
+                    x = sc.nextInt();
+                    int first = firstOccurenceArray(arr, x);
+                    if (first != -1){
+                        System.out.println("First Occurence of "+ x + " is " + "at " + "index no " + first);
+                    }
+                    else{
+                        System.out.println("Element Not Found");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter the Element X: ");
+                    x = sc.nextInt();
+                    int count = findStrictlyGreater(arr, x);
+                    System.out.println("Count of elements strictly greater than " + x + " is "+ count);
+                    break;
+                case 3:
+                    boolean isSorted = isSorted(arr);
+                    if(isSorted){
+                        System.out.println("The Given Array is sorted");
+                    }
+                    else{
+                        System.out.println("The Given Array is not sorted");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Enter K: ");
+                    int k = sc.nextInt();
+                    int []kthArray = kthSmallestInArray(arr, k);
+                    System.out.println("");
+                    System.out.println("Output Array is: ");
+                    printArray(kthArray);
+                    break;
+                case 5:
+                    System.out.println("Enter Target: ");
+                    target = sc.nextInt();
+                    int pairs = targetTwoSum(arr, target);
+                    System.out.println("The No of pairs that sum up to "+target+ " is "+pairs);
+                    break;
+                case 6:
+                    System.out.println("Enter Target: ");
+                    target = sc.nextInt();
+                    int triplets = targetThreeSum(arr, target);
+                    System.out.println("The No of triplets that sum up to "+target+ " is "+triplets);
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+                    break;
+                }
         } while(true);
  
    } 
