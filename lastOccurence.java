@@ -5,9 +5,7 @@ public class lastOccurence {
         int lastIndex = -1;
         for(int i = 0; i < arr.length; i++){
             if(arr[i] == x){
-                if(i > lastIndex){
-                    lastIndex = i;
-                }
+                lastIndex = i;
             }
         }
         return lastIndex;
