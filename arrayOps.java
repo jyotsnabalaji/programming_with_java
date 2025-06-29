@@ -73,7 +73,7 @@ public class arrayOps {
             }
         }
     }
-    return count;
+        return count;
     }
 
    static void printArray(int []arr){
