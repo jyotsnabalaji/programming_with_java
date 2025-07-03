@@ -1,3 +1,4 @@
+
 import java.util.*;
 public class arrayOps {
 
@@ -76,6 +77,62 @@ public class arrayOps {
         return count;
     }
 
+    static int uniqueInArray(int []arr){
+        int []countArr = new int[arr.length];
+        for(int i=0; i<arr.length; i++){
+            countArr[i] = 0;
+            for(int j=0; j<arr.length; j++){
+                if(arr[i] == arr[j]){
+                    countArr[i]++;
+                }
+            }
+        }
+        for(int i=0; i<countArr.length; i++){
+            if(countArr[i] == 1){
+                return arr[i];
+            }
+        }
+        return -1;
+    }
+
+    static int firstDuplicateInArray(int []arr){
+        int []countArr = new int[arr.length];
+        for(int i=0; i<arr.length; i++){
+            countArr[i] = 0;
+            for(int j=0; j<arr.length; j++){
+                if(arr[i] == arr[j]){
+                    countArr[i]++;
+                }
+            }
+        }
+        for(int i=0; i<countArr.length; i++){
+            if(countArr[i] > 1){
+                return arr[i];
+            }
+        }
+        return -1;
+    }
+
+    static int findMax(int []arr){
+        int max = Integer.MIN_VALUE;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+    static int secondLargest(int []arr){
+        int max = findMax(arr);
+        for(int i=0; i<arr.length; i++){
+            if(arr[i] == max){
+                arr[i] = Integer.MIN_VALUE;
+            }
+        }
+        int secondMax = findMax(arr);
+        return secondMax;
+    }
+
    static void printArray(int []arr){
         System.out.print("[ ");
         for(int i=0; i<arr.length; i++){
@@ -110,7 +167,9 @@ public class arrayOps {
             System.out.println("4. Find the Kth Smallest and Kth Largest Element in an array");
             System.out.println("5. Find the target two sum count of array");
             System.out.println("6. Find the target three sum count of array");
-
+            System.out.println("7. Find the unique element in the given array");
+            System.out.println("8. Find the second largest element in the given array");
+            System.out.println("9. Find the first duplicate element in the given array");
 
             System.out.println("Enter the Option");
             int option = sc.nextInt();
@@ -161,6 +220,18 @@ public class arrayOps {
                     target = sc.nextInt();
                     int triplets = targetThreeSum(arr, target);
                     System.out.println("The No of triplets that sum up to "+target+ " is "+triplets);
+                    break;
+                case 7:
+                    int unique = uniqueInArray(arr);
+                    System.out.println("The unique element is "+unique);
+                    break;
+                case 8:
+                    int secondMax = secondLargest(arr);
+                    System.out.println("The second max element is "+secondMax);
+                    break;
+                case 9:
+                    int firstDuplicate = firstDuplicateInArray(arr);
+                    System.out.println("The first duplicate element is "+firstDuplicate);
                     break;
 
                 default:
