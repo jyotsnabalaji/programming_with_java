@@ -133,14 +133,75 @@ public class arrayOps {
         return secondMax;
     }
 
-   static void printArray(int []arr){
+    static int[] reverseArray(int[] arr){
+        int n = arr.length;
+        int []revArray = new int[n];
+        int pos = -1;
+        for(int i=0; i<n; i++){
+            revArray[i+n+pos] = arr[i];
+            pos-=2;
+        }
+        return revArray;
+    }
+
+    static void reverseArrayInPlace(int []arr){
+        int x = 0;
+        int y = arr.length-1;
+        int temp = 0;
+        for (int i=0; i<arr.length; i++){
+            if(x<y){
+                temp = arr[x];
+                arr[x] = arr[y];
+                arr[y] = temp;
+            }
+            x++;
+            y--;
+        }
+    }
+
+    static void reverse(int []arr, int i, int j){
+        int temp = 0;
+        while(i<j){
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    static int[] rotateArray(int []arr, int k){
+        int n = arr.length;
+        k = k%n;
+        int j=0;
+        int []rotateArray = new int[n]; 
+
+        for(int i=n-k; i<n; i++){
+            rotateArray[j++] = arr[i];
+        }
+        for(int i=0; i<n-k; i++){
+            rotateArray[j++] = arr[i];
+        }
+        return rotateArray;
+    }
+
+    static void rotateArrayInPlace(int []arr, int k){
+        int n = arr.length;
+        k = k%n;
+        reverse(arr, 0, n-k-1);
+        reverse(arr, n-k, n-1);
+        reverse(arr, 0, n-1);
+    }
+
+    static void printArray(int []arr){
+        Arrays.sort(arr)
         System.out.print("[ ");
         for(int i=0; i<arr.length; i++){
                 System.out.print(arr[i] + " ");
         }
         System.out.print("]");
         System.out.println("");
-   }
+    }
 
    public static void main(String[] args) {
 
@@ -154,8 +215,10 @@ public class arrayOps {
         for(int i=0; i<n; i++){
             arr[i] = sc.nextInt();
         }
+
         int x = 0;
         int target = 0;
+        int k = 0;
         
         do{
             System.out.println("");
@@ -170,7 +233,10 @@ public class arrayOps {
             System.out.println("7. Find the unique element in the given array");
             System.out.println("8. Find the second largest element in the given array");
             System.out.println("9. Find the first duplicate element in the given array");
-
+            System.out.println("10. Reverse the given array");
+            System.out.println("11. Reverse the given array In Place");
+            System.out.println("12. Rotate the given array");
+            System.out.println("13. Rotate the given array In Place");
             System.out.println("Enter the Option");
             int option = sc.nextInt();
 
@@ -203,7 +269,7 @@ public class arrayOps {
                     break;
                 case 4:
                     System.out.println("Enter K: ");
-                    int k = sc.nextInt();
+                    k = sc.nextInt();
                     int []kthArray = kthSmallestInArray(arr, k);
                     System.out.println("");
                     System.out.println("Output Array is: ");
@@ -233,6 +299,35 @@ public class arrayOps {
                     int firstDuplicate = firstDuplicateInArray(arr);
                     System.out.println("The first duplicate element is "+firstDuplicate);
                     break;
+                case 10:
+                    int []revArray = reverseArray(arr);
+                    printArray(revArray);
+                    break;
+                case 11:
+                    reverseArrayInPlace(arr);
+                    printArray(arr);
+                    break;
+                case 12:
+                    System.out.println("Enter k:");
+                    k = sc.nextInt();
+                    int []rotatedArray = rotateArray(arr, k);
+                    System.out.print("Array before rotation: ");
+                    printArray(arr);
+                    System.out.print("Array after rotation: ");
+                    printArray(rotatedArray);
+                    break;
+                case 13:
+                    System.out.println("Enter k:");
+                    k = sc.nextInt();
+
+                    System.out.print("Array before rotation: ");
+                    printArray(arr);
+
+                    rotateArrayInPlace(arr, k);
+
+                    System.out.print("Array after rotation: ");
+                    printArray(arr);
+                    break;
 
                 default:
                     System.out.println("Invalid option.");
@@ -242,4 +337,3 @@ public class arrayOps {
  
    } 
 }
-
