@@ -193,8 +193,36 @@ public class arrayOps {
         reverse(arr, 0, n-1);
     }
 
+    static int[] removeDuplicate(int []arr){
+        int []countArr = new int[arr.length];
+        int []uniqueArr = new int[arr.length];
+        
+        for(int i=0; i<arr.length; i++){
+            countArr[i] = 0;
+            for(int j=0; j<arr.length; j++){
+                if(arr[i] == arr[j]){
+                    countArr[i]++;
+                }
+            }
+        }
+        for(int i=0; i<countArr.length; i++){
+            if(countArr[i] == 1){
+                uniqueArr[i] = arr[i];
+            }
+        }
+        return uniqueArr;
+    }
+
+    static int[] remDup(int []arr){
+        int n = arr.length;
+        int x = 0;
+        int y = x+1;
+        while(x<y){
+            if(arr[x] == arr[y])
+        }
+    }
+
     static void printArray(int []arr){
-        Arrays.sort(arr)
         System.out.print("[ ");
         for(int i=0; i<arr.length; i++){
                 System.out.print(arr[i] + " ");
@@ -237,6 +265,7 @@ public class arrayOps {
             System.out.println("11. Reverse the given array In Place");
             System.out.println("12. Rotate the given array");
             System.out.println("13. Rotate the given array In Place");
+            System.out.println("14. Remove Duplicates");
             System.out.println("Enter the Option");
             int option = sc.nextInt();
 
@@ -327,6 +356,11 @@ public class arrayOps {
 
                     System.out.print("Array after rotation: ");
                     printArray(arr);
+                    break;
+                case 14:
+
+                    int []uniqueArr = removeDuplicate(arr);
+                    printArray(uniqueArr);
                     break;
 
                 default:
