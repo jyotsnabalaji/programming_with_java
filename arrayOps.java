@@ -212,16 +212,7 @@ public class arrayOps {
         }
         return uniqueArr;
     }
-
-    static int[] remDup(int []arr){
-        int n = arr.length;
-        int x = 0;
-        int y = x+1;
-        while(x<y){
-            if(arr[x] == arr[y])
-        }
-    }
-
+    
     static void printArray(int []arr){
         System.out.print("[ ");
         for(int i=0; i<arr.length; i++){

@@ -40,6 +40,14 @@ public class prefixSum {
         }
     }
 
+
+    // This needs an extra loop to calculate the from index to index.
+    // This can be done easily with O(1) complexity if we already have prefix sum array.
+    // suppose i have an array of 5 elements, if i want the sum of elements from index 3 to 5 alone,
+    // I will do pref[5] - pref[2]
+    // that is pref[right-1] - pref[left-2] (since array indexing is from 0)
+    // by this method, we can easily print the sum from one index to other index with less time complexity
+
     static int prefixSumWithIndex(int []arr, int l, int r){
         int sum = 0;
 
@@ -48,6 +56,17 @@ public class prefixSum {
         }
 
         return sum;
+    }
+
+    static int prefixSumWithIndexOptimal(int []arr, int l, int r){
+        int sum = 0;
+        int []pref = makePrefixSumArray(arr);
+        if (l == 1) {
+        return pref[r - 1];
+        } else {
+        sum = pref[r-1] - pref[l-2];
+        return sum;
+        }
     }
 
     static void printArray(int []arr){
@@ -82,6 +101,7 @@ public class prefixSum {
             System.out.println("1. Prefix Sum Array");
             System.out.println("2. Prefix Sum Array in place");
             System.out.println("3. Prefix Sum with start and end indices");
+            System.out.println("4. Prefix Sum with start and end indices Optimal");
             System.out.println("Enter the Option");
             int option = sc.nextInt();
             switch(option){
@@ -114,7 +134,23 @@ public class prefixSum {
                         System.out.println("Prefix sum from "+l+" to "+r+" is "+sum);
                         q--;
                     }
-                    
+                    break;
+                case 4:
+                    System.out.println("Enter the number of queries:");
+                    q = sc.nextInt();
+                    while(q>0){
+                        int sum = 0;
+                        System.out.println("Enter l:");
+                        int l = sc.nextInt();
+
+                        System.out.println("Enter r:");
+                        int r = sc.nextInt();
+
+                        sum = prefixSumWithIndexOptimal(arr, l, r);
+                        System.out.println("Prefix sum from "+l+" to "+r+" is "+sum);
+                        q--;
+                    }
+                    break;
                 default:
                     System.out.println("Invalid option.");
                     break;
