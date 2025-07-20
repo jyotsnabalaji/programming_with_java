@@ -13,7 +13,7 @@ public class prefixSum {
         }
     }
 
-    static void swap(int []arr, int i, int j){
+    static void swap(int []    arr, int i, int j){
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -69,6 +69,24 @@ public class prefixSum {
         }
     }
 
+    static boolean subArraySum(int []arr){
+        int n = arr.length;
+        int leftHalf = n/2;
+        int leftSum = 0;
+        int rightSum = 0;
+
+        for(int i=0; i<leftHalf;i++){
+            leftSum = leftSum+arr[i];
+        }
+        for(int i=leftHalf; i<n;i++){
+            rightSum = rightSum+arr[i];
+        }
+        if(leftSum == rightSum){
+            return true;
+        }
+        return false;
+    }
+
     static void printArray(int []arr){
         System.out.print("[ ");
         for(int i=0; i<arr.length; i++){
@@ -102,6 +120,7 @@ public class prefixSum {
             System.out.println("2. Prefix Sum Array in place");
             System.out.println("3. Prefix Sum with start and end indices");
             System.out.println("4. Prefix Sum with start and end indices Optimal");
+            System.out.println("5. Check if the sum of sub arrays are equal or not");
             System.out.println("Enter the Option");
             int option = sc.nextInt();
             switch(option){
@@ -150,6 +169,12 @@ public class prefixSum {
                         System.out.println("Prefix sum from "+l+" to "+r+" is "+sum);
                         q--;
                     }
+                    break;
+                case 5:
+                    System.out.print("Given array: ");
+                    printArray(arr);
+                    boolean isSubArraySumEqual = subArraySum(arr);
+                    System.out.print(isSubArraySumEqual);
                     break;
                 default:
                     System.out.println("Invalid option.");
